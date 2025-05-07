@@ -158,3 +158,15 @@
   text-align: right;
   cursor: pointer;
 }
+
+
+.error-alert {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.error-message {
+  list-style: none;
+  padding: 2px 0;
+}

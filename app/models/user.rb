@@ -7,17 +7,30 @@ class User < ApplicationRecord
   has_many :items
   has_many :orders
 
-  validates :nickname, presence: true
+  validates :nickname, presence: { message: "can't be blank" }
 
-  VALID_PASSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
-  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数字混合で入力してください' },
-                       length: { minimum: 6 }
+  # メールアドレス
+  validates :email, presence: { message: "can't be blank" }
+  validates :email, uniqueness: { message: 'has already been taken' }
+  validates :email, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "is invalid. Include '@'" }
 
-  validates :last_name,  presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
+  # パスワード
+  validates :password, presence: { message: "can't be blank" }
+  validates :password, length: { minimum: 6, message: 'is too short (minimum is 6 characters)' }
+  validates :password, format: {
+    with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/,
+    message: 'is invalid. Include both letters and numbers'
+  }
 
-  validates :last_name_kana,  presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'は全角カタカナで入力してください' }
-  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'は全角カタカナで入力してください' }
+  validates :last_name,  presence: { message: "can't be blank" }
+  validates :first_name, presence: { message: "can't be blank" }
+  validates :last_name,  format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
+  validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
 
-  validates :birth_date, presence: true
+  validates :last_name_kana,  presence: { message: "can't be blank" }
+  validates :first_name_kana, presence: { message: "can't be blank" }
+  validates :last_name_kana,  format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
+
+  validates :birth_date, presence: { message: "can't be blank" }
 end
