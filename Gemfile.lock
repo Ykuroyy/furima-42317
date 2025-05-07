@@ -35,7 +35,7 @@ GEM
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
       rack-test (>= 0.6.3)
-      rails-dom-testing (~> 2.2)
+      rails-dom-testing (~> 2.2)f
       rails-html-sanitizer (~> 1.6)
     actiontext (7.1.5.1)
       actionpack (= 7.1.5.1)
