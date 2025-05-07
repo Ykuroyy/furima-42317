@@ -1,18 +1,29 @@
+
+
+
 .registration-main {
   width: 100%;
-  min-width: 800px;
-  height: 100%;
+  /* min-width: 800px; */
+  min-height: 100vh;
+  /* height: 100vh;  */
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 40px 0; /* スクロール対応の余白 */
+  box-sizing: border-box;
 }
 
 /* form-wrapは商品購入画面でも使用しています */
 .form-wrap {
-  width: 50%;
+  /* width: 50%; */
+  /* background-color: white; */
+  /* padding-bottom: 70px; */
+  width: 600px;
   background-color: white;
-  padding-bottom: 70px;
+  padding: 40px;
 }
+
 
 .form-header {
   width: 100%;
@@ -96,7 +107,9 @@
 
 .input-birth-wrap {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center; 
+  gap: 5px; 
 }
 
 .input-birth-wrap select {
@@ -157,16 +170,4 @@
   color: #0099e8;
   text-align: right;
   cursor: pointer;
-}
-
-
-.error-alert {
-  color: red;
-  font-size: 14px;
-  margin: 10px 0;
-}
-
-.error-message {
-  list-style: none;
-  padding: 2px 0;
 }

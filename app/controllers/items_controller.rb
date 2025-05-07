@@ -1,64 +1,32 @@
 class ItemsController < ApplicationController
-  # before_action :authenticate_user!, except: [:index, :show]
-  # before_action :move_to_index, except: [:index, :show]
-  # before_action :set_prototype, only: [:edit, :show, :update, :destroy]
-  # before_action :move_to_index_if_not_owner, only: [:edit, :update, :destroy]
+  # トップページ（indexアクション）のみ、ログインなしでアクセス可能にする
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @items = Item.all
+    # 商品一覧やトップページの処理をここに書く
+    @items = Item.all.order(created_at: :desc)
   end
 
+  # def show
+  # @item = Item.find(params[:id])
+  # end
+
   # def new
-  # @prototype = Prototype.new
+  # @item = Item.new
   # end
 
   # def create
-  # @prototype = Prototype.new(prototype_params)
-  # if @prototype.save
-  # redirect_to root_path
+  # @item = current_user.items.build(item_params)
+  # if @item.save
+  # redirect_to root_path, notice: '商品を投稿しました'
   # else
   # render :new
   # end
   # end
 
-  # def destroy
-  # @prototype.destroy
-  # redirect_to root_path
-  # end
-
-  # def edit
-  # end
-
-  # def update
-  # if @prototype.update(prototype_params)
-  # redirect_to prototype_path(@prototype)
-  # else
-  # render :edit
-  # end
-  # end
-
-  # def show
-  # @comment = Comment.new
-  # @comments = @prototype.comments.includes(:user)
-  # end
-
   # private
-  # def prototype_params
-  # params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
-  # end
 
-  # def set_prototype
-  # @prototype = Prototype.find(params[:id])
-  # end
-
-  # def move_to_index
-  # unless user_signed_in?
-  # redirect_to action: :index
-  # end
-  # end
-
-  # def move_to_index_if_not_owner
-  # unless current_user == @prototype.user
-  # redirect_to root_path, alert: "権限がありません"
+  # def item_params
+  # params.require(:item).permit(:title, :description, :price, :image)
   # end
 end
