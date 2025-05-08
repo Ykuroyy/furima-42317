@@ -1,0 +1,23 @@
+document.addEventListener('turbo:load', () => {
+  const priceInput = document.getElementById('item-price');
+  const feeOutput = document.getElementById('add-tax-price');
+  const profitOutput = document.getElementById('profit');
+
+  if (!priceInput) return;
+
+  priceInput.addEventListener('input', () => {
+    const price = parseInt(priceInput.value);
+
+    if (isNaN(price) || price < 300 || price > 9999999) {
+      feeOutput.textContent = '---';
+      profitOutput.textContent = '---';
+      return;
+    }
+
+    const fee = Math.floor(price * 0.1);
+    const profit = price - fee;
+
+    feeOutput.textContent = fee;
+    profitOutput.textContent = profit;
+  });
+});

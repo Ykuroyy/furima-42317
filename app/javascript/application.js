@@ -10,3 +10,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 import "item_price"
+import "calculate_price"
