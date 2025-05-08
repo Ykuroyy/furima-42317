@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   # トップページ（indexアクション）のみ、ログインなしでアクセス可能にする
-  skip_before_action :authenticate_user!, only: [:index]
+  # skip_before_action :authenticate_user!, only: [:index]
 
   def index
     # 商品一覧やトップページの処理をここに書く
