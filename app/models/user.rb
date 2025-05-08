@@ -2,19 +2,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :items
-  has_many :orders
+  # has_many :items
+  # has_many :orders
+
   # ニックネーム
   validates :nickname, presence: { message: "can't be blank" }
 
-  # メールアドレス
-  validates :email, presence: { message: "can't be blank" }
-  validates :email, uniqueness: { message: 'has already been taken' }
-  validates :email, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "is invalid. Include '@'" }
-
   # パスワード
-  validates :password, presence: { message: "can't be blank" }
-  validates :password, length: { minimum: 6, message: 'is too short (minimum is 6 characters)' }
   validates :password, format: {
     with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/,
     message: 'is invalid. Include both letters and numbers'
@@ -27,9 +21,9 @@ class User < ApplicationRecord
 
   # カナ（全角カタカナ）
   validates :last_name_kana,  presence: { message: "can't be blank" },
-                              format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
+                              format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input valid Japanese characters' }
   validates :first_name_kana, presence: { message: "can't be blank" },
-                              format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
+                              format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input valid Japanese characters' }
 
   # 生年月日
   validates :birth_date, presence: { message: "can't be blank" }
