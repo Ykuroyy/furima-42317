@@ -4,12 +4,12 @@
 
   </header>
   <div class="items-sell-main">
-    <h2 class="items-sell-title">商品の情報を入力</h2>
+    <h2 class="items-sell-name">商品の情報を入力</h2>
     <%# <%= form_with local: true do |f| %> 
     <%= form_with model: @item, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <% render 'shared/error_messages', model: f.object %>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 商品画像 %>
@@ -32,7 +32,7 @@
         商品名
         <span class="indispensable">必須</span>
       </div>
-      <%= f.text_area :title, class:"items-text", id:"item-title", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+      <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
@@ -52,13 +52,13 @@
           <span class="indispensable">必須</span>
         </div>
         <%# <%= f.collection_select(:category_id, Category.all, :id, :title, {}, {class:"select-box", id:"item-category"}) %> 
-        <%= f.collection_select :category_id, Category.all, :id, :title, { prompt: "---" }, class: "select-box", id: "item-category" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "---" }, class: "select-box", id: "item-category" %>
        <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
         <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-sales-status"}) %> 
-        <%= f.collection_select :condition_id, Condition.all, :id, :title, { prompt: "---" }, class: "select-box", id: "item-sales-status" %>
+        <%= f.collection_select :condition_id, Condition.all, :id, :name, { prompt: "---" }, class: "select-box", id: "item-sales-status" %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -75,19 +75,19 @@
           <span class="indispensable">必須</span>
         </div>
         <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-shipping-fee-status"}) %> 
-        <%= f.collection_select :shipping_fee_status_id, ShippingFeeStatus.all, :id, :title, { prompt: "---" }, class: "select-box", id: "item-shipping-fee-status" %>
+        <%= f.collection_select :shipping_fee_status_id, ShippingFeeStatus.all, :id, :name, { prompt: "---" }, class: "select-box", id: "item-shipping-fee-status" %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
         <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-prefecture"}) %>
-        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :title, { prompt: "---" }, class: "select-box", id: "item-prefecture" %>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, class: "select-box", id: "item-prefecture" %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
         <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %> 
-        <%= f.collection_select :scheduled_delivery_id, ScheduledDelivery.all, :id, :title, { prompt: "---" }, class: "select-box", id: "item-scheduled-delivery" %>
+        <%= f.collection_select :scheduled_delivery_id, ScheduledDelivery.all, :id, :name, { prompt: "---" }, class: "select-box", id: "item-scheduled-delivery" %>
       </div>
     </div>
     <%# /配送について %>
