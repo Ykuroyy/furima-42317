@@ -1,6 +1,7 @@
 // app/javascript/item_price.js
 
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", () => {  
   const priceInput = document.getElementById("item-price");
   if (!priceInput) return;
 
