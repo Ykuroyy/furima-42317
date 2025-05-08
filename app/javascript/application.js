@@ -8,3 +8,5 @@ document.addEventListener("DOMContentLoaded", () => {
     errorBox.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 });
+
+import "item_price"
