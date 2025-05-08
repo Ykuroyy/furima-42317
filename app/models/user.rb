@@ -21,9 +21,9 @@ class User < ApplicationRecord
 
   # カナ（全角カタカナ）
   validates :last_name_kana,  presence: { message: "can't be blank" },
-                              format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input valid Japanese characters' }
+                              format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input valid Japanese characters' }
   validates :first_name_kana, presence: { message: "can't be blank" },
-                              format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input valid Japanese characters' }
+                              format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input valid Japanese characters' }
 
   # 生年月日
   validates :birth_date, presence: { message: "can't be blank" }
