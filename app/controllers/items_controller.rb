@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: '商品を投稿しました'
     else
+      puts @item.errors.full_messages
       render :new
     end
   end
