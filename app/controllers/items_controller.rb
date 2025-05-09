@@ -1,12 +1,9 @@
 class ItemsController < ApplicationController
-  # トップページ（indexアクション）のみ、ログインなしでアクセス可能にする
   skip_before_action :authenticate_user!, only: [:index]
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    # 商品一覧やトップページの処理をここに書く
     @items = Item.all.order(created_at: :desc)
-    # @item = Item.new
   end
 
   # def show
