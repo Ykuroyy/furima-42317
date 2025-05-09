@@ -16,12 +16,21 @@
   text-align: center;
 }
 
+
+
 .items-sell-main {
-  background-color: #FFF;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   width: 70vw;
-  min-width: 450px;
-  padding: 10vh 15vw;
+  max-width: 800px;
+  margin: 40px auto; /* 中央寄せ＋上下余白 */
 }
+
+
+
+
 
 .items-sell-title {
   font-size: 22px;
@@ -176,28 +185,44 @@
 /* /注意書き */
 
 /* 下部ボタン */
+
 .sell-btn-contents {
-  width: 100%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;   
+  gap: 16px;               
+  margin-top: 32px;
 }
 
 .sell-btn {
-  background: #ea352d;
-  border: 1px solid #ea352d;
-  color: #fff;
-  width: 100%;
-  height: 50px;
-  font-size: 14px;
-  margin-bottom: 4vh;
+  width: 200px;
+  height: 48px;
+  background-color: #ea352d;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
+
+
+
 .back-btn {
-  background: #aaa;
-  border: 1px solid #aaa;
-  color: #fff;
-  padding: 15px 35%;
+  width: 200px;
+  text-align: center;
+  background-color: #aaa;
+  color: white;
   text-decoration: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  display: block;
 }
+
+
+
+
+
 
 /* /下部ボタン */
 
