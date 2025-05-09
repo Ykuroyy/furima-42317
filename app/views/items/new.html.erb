@@ -97,9 +97,10 @@
               <span class="indispensable">必須</span>
             </div>
 
-            <%= f.number_field :price, id: "item-price", class: "price-input", placeholder: "価格を入力" %>
+            <%= f.text_field :price, id: "item-price", class: "price-input", placeholder: "価格を入力", inputmode: "numeric", pattern: "[0-9]*" %>
+
           </div>
-          
+
           <div class="price-content">
             <span>販売手数料 (10%)</span>
             <span><span id="fee"></span>円</span>
