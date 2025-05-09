@@ -50,6 +50,8 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_hash (3.3.1)
+      activesupport (>= 5.0.0)
     activejob (7.1.5.1)
       activesupport (= 7.1.5.1)
       globalid (>= 0.3.6)
@@ -113,10 +115,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.6.1)
-    dotenv (3.1.8)
-    dotenv-rails (3.1.8)
-      dotenv (= 3.1.8)
-      railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
     factory_bot (6.5.1)
@@ -326,13 +324,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_hash
   bootsnap
   capybara
   debug
   devise
   factory_bot_rails
   faker
-  dotenv-rails
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)

@@ -23,7 +23,8 @@
 
 | Column          | Type       | Options     |
 | ------          | ------     | ----------- |
-| title           | string     | null: false |
+<!-- | title           | string     | null: false | -->
+| name            | string     | null: false |
 | description     | text       | null: false |
 | category_id     | integer    | null: false |
 | condition_id    | integer    | null: false |
