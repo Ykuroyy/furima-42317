@@ -1,6 +1,6 @@
 // app/javascript/item_price.js
 
-function handleInput(event) {
+const handleInput = (event) => {
   const value = parseInt(event.target.value, 10);
   const feeDisplay = document.getElementById("fee");
   const profitDisplay = document.getElementById("profit");
@@ -18,16 +18,17 @@ function handleInput(event) {
 
   feeDisplay.textContent = fee.toLocaleString();
   profitDisplay.textContent = profit.toLocaleString();
-}
+};
 
-function setupPriceCalculation() {
+const setupPriceCalculation = () => {
   const priceInput = document.getElementById("item-price");
   if (!priceInput) return;
 
-  // イベントの重複登録を防ぐ
   priceInput.removeEventListener("input", handleInput);
   priceInput.addEventListener("input", handleInput);
-}
+};
 
+// Turbo対応
 window.addEventListener("turbo:load", setupPriceCalculation);
 window.addEventListener("turbo:render", setupPriceCalculation);
+
