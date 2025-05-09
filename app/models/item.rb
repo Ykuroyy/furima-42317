@@ -24,15 +24,11 @@ class Item < ApplicationRecord
     validates :scheduled_delivery_id
   end
 
-  validates :price, presence: true
-  validates :price, format: { with: /\A[0-9]+\z/, message: 'is not a number' }
   validates :price, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 300,
     less_than_or_equal_to: 9_999_999
   }
-
-  # validates :sales_status_id, numericality: { other_than: 1, message: "can't be blank" }
 
   before_validation :strip_price_whitespace
 
