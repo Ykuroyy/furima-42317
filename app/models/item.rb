@@ -1,25 +1,36 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  extend ActiveHash::Associations::ActiveRecordExtensions
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_fee_status
   belongs_to :prefecture
   belongs_to :scheduled_delivery
 
-  validates :image, presence: true
-  validates :name, presence: true
-  validates :description, presence: true
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :description
+    validates :price
+  end
 
-  validates :category_id, :shipping_fee_status_id,
-            :prefecture_id, :scheduled_delivery_id,
-            numericality: { other_than: 1, message: "can't be blank" }
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_fee_status_id
+    validates :prefecture_id
+    validates :scheduled_delivery_id
+  end
 
-  validates :price,
-            presence: true,
-            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, presence: true
+  validates :price, format: { with: /\A[0-9]+\z/, message: 'is not a number' }
+  validates :price, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 300,
+    less_than_or_equal_to: 9_999_999
+  }
 
   # validates :sales_status_id, numericality: { other_than: 1, message: "can't be blank" }
 
