@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'items#index'
+  get '/debug', to: 'items#debug'
+
 
   resources :items do
     resources :orders, only: [:index, :create, :new]
