@@ -201,14 +201,15 @@
 
 
 <% if Rails.env.development? %>
-<h2>【デバッグ表示】商品一覧</h2>
-<% @items.each do |item| %>
-  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-    <p>名前: <%= item.name %></p>
-    <p>価格: <%= item.price %></p>
-    <p>画像添付済？: <%= item.image.attached? %></p>
-    <% if item.image.attached? %>
-      <%= image_tag item.image, width: 200 %>
-    <% end %>
-  </div>
-<% end %>
+  <h2>【デバッグ表示】商品一覧</h2>
+  <% @items.each do |item| %>
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+      <p>名前: <%= item.name %></p>
+      <p>価格: <%= item.price %></p>
+      <p>画像添付済？: <%= item.image.attached? %></p>
+      <% if item.image.attached? %>
+        <%= image_tag item.image, width: 200 %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %> 
