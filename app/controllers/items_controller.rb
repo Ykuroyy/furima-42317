@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
-    Rails.logger.debug "★ 登録商品数: #{Item.count}"
   end
 
   def show

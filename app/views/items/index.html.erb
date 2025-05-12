@@ -150,7 +150,7 @@
                   </div>
                 </div>
               </div>
-            <% end %> <!-- link_toのendを正しい位置で閉じる -->
+            <% end %> 
           </li>
         <% end %>
       <% else %>
@@ -193,7 +193,7 @@
 
 
 
-
+<% if Rails.env.development? %>
 <h2>【デバッグ表示】商品一覧</h2>
 <% @items.each do |item| %>
   <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
