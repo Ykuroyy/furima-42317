@@ -1,9 +1,0 @@
-<h1>全ての商品デバッグ表示</h1>
-<% Item.all.each do |item| %>
-  <div style="border:1px solid #ccc; margin:10px; padding:10px;">
-    <p><strong>商品名:</strong> <%= item.name %></p>
-    <p><strong>説明:</strong> <%= item.description %></p>
-    <p><strong>価格:</strong> <%= item.price %></p>
-    <p><strong>画像:</strong> <%= image_tag item.image if item.image.attached? %></p>
-  </div>
-<% end %>

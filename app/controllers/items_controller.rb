@@ -13,10 +13,6 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def debug
-    @items = Item.all
-  end
-
   def create
     @item = current_user.items.build(item_params)
     if @item.save
