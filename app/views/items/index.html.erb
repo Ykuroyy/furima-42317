@@ -139,23 +139,6 @@
                   </div>
                 <% end %>
               </div>
-
-
-
-              <h2>デバッグ：登録商品一覧</h2>
-              <% @items.each do |item| %>
-                <div>
-                  <p>商品名：<%= item.name %></p>
-                  <p>価格：<%= item.price %></p>
-                  <p>画像添付？<%= item.image.attached? %></p>
-                  <% if item.image.attached? %>
-                    <%= image_tag item.image, width: 200 %>
-                  <% end %>
-                </div>
-              <% end %>
-
-
-
               <div class='item-info'>
                 <h3 class='item-name'>
                   <%= item.name %>
@@ -199,3 +182,15 @@
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
 <%= render "shared/footer" %>
+
+<h2>【デバッグ表示】商品一覧</h2>
+<% @items.each do |item| %>
+  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <p>名前: <%= item.name %></p>
+    <p>価格: <%= item.price %></p>
+    <p>画像添付済？: <%= item.image.attached? %></p>
+    <% if item.image.attached? %>
+      <%= image_tag item.image, width: 200 %>
+    <% end %>
+  </div>
+<% end %>
