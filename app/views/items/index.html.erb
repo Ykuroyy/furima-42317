@@ -139,6 +139,23 @@
                   </div>
                 <% end %>
               </div>
+
+
+
+              <h2>デバッグ：登録商品一覧</h2>
+              <% @items.each do |item| %>
+                <div>
+                  <p>商品名：<%= item.name %></p>
+                  <p>価格：<%= item.price %></p>
+                  <p>画像添付？<%= item.image.attached? %></p>
+                  <% if item.image.attached? %>
+                    <%= image_tag item.image, width: 200 %>
+                  <% end %>
+                </div>
+              <% end %>
+
+
+
               <div class='item-info'>
                 <h3 class='item-name'>
                   <%= item.name %>

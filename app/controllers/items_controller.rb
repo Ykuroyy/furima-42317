@@ -2,9 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    # @items = Item.all.order(created_at: :desc)
-    Rails.logger.debug "★ 登録商品数: #{Item.count}"
     @items = Item.all.order(created_at: :desc)
+    Rails.logger.debug "★ 登録商品数: #{Item.count}"
   end
 
   def show
