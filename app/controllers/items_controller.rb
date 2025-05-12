@@ -3,6 +3,12 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
+
+    return unless Rails.env.production?
+
+    Rails.logger.info "【本番デバッグ】Item.count = #{Item.count}"
+    Rails.logger.info "【本番デバッグ】最新商品名: #{Item.last&.name}"
+    Rails.logger.info "【本番デバッグ】画像添付あり？: #{Item.last&.image&.attached?}"
   end
 
   def show
