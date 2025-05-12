@@ -6,11 +6,7 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
 
-  resources :items do
-    resources :orders, only: [:index, :create, :new]
-  end
-
-
+  resources :items 
     
   
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
