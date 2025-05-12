@@ -11,6 +11,8 @@ module Furima42317
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    config.paths.add 'app/models', eager_load: true
+
     config.active_storage.variant_processor = :mini_magick
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
