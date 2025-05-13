@@ -22,7 +22,7 @@ const pay = () => {
         alert(response.error.message);
       } else {
         const token = response.id;
-        const tokenInput = `<input value="${token}" type="hidden" name="order_shipping[token]">`;
+        const tokenInput = `<input value="${token}" type="hidden" name="order_shipping[token]" id="token">`;
         form.insertAdjacentHTML("beforeend", tokenInput);
 
         form.submit(); // トークンを追加したら送信

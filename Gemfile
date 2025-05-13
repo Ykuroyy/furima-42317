@@ -48,6 +48,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -79,7 +80,7 @@ gem 'mini_magick'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
-gem 'dotenv-rails'
+
 
 gem 'payjp'
 
