@@ -6,11 +6,12 @@
     <h2 class="name">
       <%= @item.name %>
     </h2>
-
     <div class="item-img-content">
       <%= image_tag @item.image, class: "item-img" %>
-      <% if @item.order.present? %>
-        <div class="sold-out-tag">SOLD OUT</div> <!-- 追加 -->
+      <% if @item.order.present? %>                
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
       <% end %>
     </div>
 
