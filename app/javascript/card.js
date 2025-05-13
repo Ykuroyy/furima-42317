@@ -1,7 +1,11 @@
 const pay = () => {
-  const publicKey = gon.public_key
-  const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
+  const form = document.getElementById('charge-form');
+  if (!form) return; // 他ページ読み込み時の安全対策
+
+  const publicKey = gon.public_key;
+  const payjp = Payjp(publicKey);
   const elements = payjp.elements();
+
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
@@ -10,24 +14,27 @@ const pay = () => {
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
 
-  const form = document.getElementById('charge-form')
-  form.addEventListener("submit", (e) => {
-    payjp.createToken(numberElement).then(function (response) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // 二重送信防止
+
+    payjp.createToken(numberElement).then((response) => {
       if (response.error) {
+        alert(response.error.message);
       } else {
         const token = response.id;
-        const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token' type="hidden">`;
-        renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        const tokenInput = `<input value="${token}" type="hidden" name="order_shipping[token]">`;
+        form.insertAdjacentHTML("beforeend", tokenInput);
+
+        form.submit(); // トークンを追加したら送信
+
+        // clearはsubmit後は基本不要ですが、念のため
+        numberElement.clear();
+        expiryElement.clear();
+        cvcElement.clear();
       }
-      numberElement.clear();
-      expiryElement.clear();
-      cvcElement.clear();
-      document.getElementById("charge-form").submit();
     });
-    e.preventDefault();
   });
 };
 
-window.addEventListener("turbo:load", pay);
-window.addEventListener("turbo:render", pay);
+window.addEventListener('turbo:load', pay);
+window.addEventListener('turbo:render', pay);

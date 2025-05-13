@@ -17,8 +17,15 @@ class OrderShipping
   end
 
   def save
-    order = Order.create(user_id: user_id, item_id: item_id)
-    ShippingAddress.create(
+    item = Item.find(item_id)
+
+    order = Order.create(user_id: user_id, item_id: item_id, price: item.price)
+    unless order.persisted?
+      Rails.logger.error("❌ Order保存に失敗: #{order.errors.full_messages}")
+      return false
+    end
+
+    shipping = ShippingAddress.create(
       postal_code: postal_code,
       prefecture_id: prefecture_id,
       city: city,
@@ -27,5 +34,12 @@ class OrderShipping
       phone_number: phone_number,
       order_id: order.id
     )
+
+    unless shipping.persisted?
+      Rails.logger.error("❌ ShippingAddress保存に失敗: #{shipping.errors.full_messages}")
+      return false
+    end
+
+    true
   end
 end

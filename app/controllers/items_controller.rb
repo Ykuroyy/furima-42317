@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    # @items = Item.all.order(created_at: :desc)
+    @items = Item.includes(:order).order(created_at: :desc)
   end
 
   def show
