@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   before_action :redirect_if_invalid_user
 
   def index
+    gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)
     @order_shipping = OrderShipping.new
   end
 
@@ -14,9 +15,11 @@ class OrdersController < ApplicationController
   def create
     @order_shipping = OrderShipping.new(order_params)
     if @order_shipping.valid?
+      pay_item
       @order_shipping.save
       redirect_to root_path
     else
+      gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)
       render :index, status: :unprocessable_entity
     end
   end
@@ -39,11 +42,11 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV.fetch('PAYJP_SECRET_KEY', nil) # .envに設定した秘密鍵を使用
+    Payjp.api_key = ENV.fetch('PAYJP_SECRET_KEY', nil)
     Payjp::Charge.create(
-      amount: @item.price,
-      card: order_params[:token],
-      currency: 'jpy'
+      amount: order_params[:price],  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency: 'jpy' # 通貨の種類（日本円）
     )
   end
 end

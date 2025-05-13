@@ -47,6 +47,7 @@
 | -------   | ---------- | ------------------------------ |
 | item      | references | null: false, foreign_key: true |
 | user      | references | null: false, foreign_key: true |
+ t.integer :price, null: false 
 
 ### Association
 
