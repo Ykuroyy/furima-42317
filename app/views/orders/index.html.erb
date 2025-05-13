@@ -1,0 +1,44 @@
+<h1>購入画面</h1>
+
+<%= form_with model: @order_shipping, url: item_orders_path(@item), local: true do |f| %>
+  <%= render 'shared/error_messages', model: @order_shipping %>
+
+  <h2>配送情報</h2>
+  <div>
+    <%= f.label :postal_code, "郵便番号" %>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= f.label :prefecture_id, "都道府県" %>
+    <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, { prompt: "---" } %>
+  </div>
+
+  <div>
+    <%= f.label :city, "市区町村" %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div>
+    <%= f.label :street_address, "番地" %>
+    <%= f.text_field :street_address %>
+  </div>
+
+  <div>
+    <%= f.label :building, "建物名（任意）" %>
+    <%= f.text_field :building %>
+  </div>
+
+  <div>
+    <%= f.label :phone_number, "電話番号" %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :token, value: "tok_sample" %> <%# PAY.JPのトークンをJavaScriptで挿入 %>
+  </div>
+
+  <div>
+    <%= f.submit "購入" %>
+  </div>
+<% end %>
