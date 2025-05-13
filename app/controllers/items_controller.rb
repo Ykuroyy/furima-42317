@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
   before_action :redirect_if_sold_out, only: [:edit, :update]
 
   def index
-    # @items = Item.all.order(created_at: :desc)
     @items = Item.includes(:order).order(created_at: :desc)
   end
 
