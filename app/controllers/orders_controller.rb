@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
-  def redirect_if_invalid_access
+  def redirect_if_invalid_user
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
