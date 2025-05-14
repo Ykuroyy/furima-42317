@@ -1,3 +1,5 @@
+$stdout.sync = true
+
 require 'rails_helper'
 
 RSpec.describe OrderShipping, type: :model do

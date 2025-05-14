@@ -4,7 +4,6 @@ class OrderShipping
   attr_accessor :postal_code, :prefecture_id, :city, :street_address, :building,
                 :phone_number, :user_id, :item_id, :token
 
-  # バリデーション
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
