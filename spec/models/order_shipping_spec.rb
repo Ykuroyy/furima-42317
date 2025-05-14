@@ -3,10 +3,9 @@ $stdout.sync = true
 require 'rails_helper'
 
 RSpec.describe OrderShipping, type: :model do
-  let(:user) { FactoryBot.create(:user) }
-  let(:item) { FactoryBot.create(:item) }
-
   before do
+    user =  FactoryBot.create(:user) 
+    item = FactoryBot.create(:item) 
     @order_shipping = FactoryBot.build(:order_shipping, user_id: user.id, item_id: item.id)
   end
 

@@ -17,7 +17,6 @@ class OrderShipping
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
-    item = Item.find(item_id)
     order = Order.create(user_id: user_id, item_id: item_id )
     return false unless order.persisted?
 

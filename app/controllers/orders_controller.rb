@@ -13,7 +13,8 @@ class OrdersController < ApplicationController
 
     gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)  # JS再読み込み用
 
-    if @order_shipping.valid? && @order_shipping.save
+    if @order_shipping.valid?
+       @order_shipping.save
       pay_item
       redirect_to root_path
     else
