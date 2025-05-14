@@ -13,10 +13,11 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
+  username: <%= ENV["FURIMA_DATABASE_USER"] %>  # MySQLのユーザー名
+  password: <%= ENV["FURIMA_DATABASE_PASSWORD"] %>  # MySQLのパスワード
+  host: <%= ENV["FURIMA_DATABASE_HOST"] %>  # Render上のMySQLホストURL
+  port: 3306  # MySQLのデフォルトポート
   socket: /tmp/mysql.sock
-  host: localhost
 
 development:
   <<: *default
@@ -54,7 +55,3 @@ test:
 production:
   <<: *default
   database: furima_42317_production
-  username: furima_42317
-  password: <%= ENV["FURIMA_42317_DATABASE_PASSWORD"] %>  # 環境変数からパスワードを取得
-  host: <%= ENV["DATABASE_HOST"] %>  # Renderで提供されたMySQLのホストURLを環境変数で取得
-  port: 3306  # MySQLのデフォルトポート
