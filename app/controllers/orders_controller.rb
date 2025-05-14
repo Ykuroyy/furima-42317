@@ -5,13 +5,13 @@ class OrdersController < ApplicationController
 
   def index
     @order_shipping = OrderShipping.new
-    gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def create
     @order_shipping = OrderShipping.new(order_shipping_params)
 
-    gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)  # JS再読み込み用
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
 
     if @order_shipping.valid?
        @order_shipping.save
@@ -33,9 +33,10 @@ class OrdersController < ApplicationController
   def order_shipping_params
     params.require(:order_shipping).permit(
       :postal_code, :prefecture_id, :city, :street_address,
-      :building, :phone_number
-    ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+      :building, :phone_number, :token
+    ).merge(user_id: current_user.id, item_id: @item.id)
   end
+
 
   def redirect_if_invalid_user
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
