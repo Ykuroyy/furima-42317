@@ -13,11 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["FURIMA_DATABASE_USER"] %>  # MySQLのユーザー名
-  password: <%= ENV["FURIMA_DATABASE_PASSWORD"] %>  # MySQLのパスワード
-  host: <%= ENV["FURIMA_DATABASE_HOST"] %>  # Render上のMySQLホストURL
-  port: 3306  # MySQLのデフォルトポート
+  username: root
+  password:
   socket: /tmp/mysql.sock
+  host: localhost
 
 development:
   <<: *default
@@ -29,7 +28,7 @@ development:
 test:
   <<: *default
   database: furima_42317_test
-  prepared_statements: false
+
 
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -55,7 +54,5 @@ test:
 production:
   <<: *default
   database: furima_42317_production
-  username: <%= ENV["FURIMA_DATABASE_USER"] %>
-  password: <%= ENV["FURIMA_DATABASE_PASSWORD"] %>
-  host: <%= ENV["FURIMA_DATABASE_HOST"] %>  # RenderのMySQLホストURLを設定
-  port: 3306  # MySQLポート
+  username: furima_42317
+  password: <%= ENV["FURIMA_42317_DATABASE_PASSWORD"] %>
