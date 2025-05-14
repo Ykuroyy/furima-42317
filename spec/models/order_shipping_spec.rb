@@ -39,14 +39,13 @@ RSpec.describe OrderShipping, type: :model do
       it 'postal_codeにハイフンがないと保存できない' do
         @order_shipping.postal_code = '1234567'
         @order_shipping.valid?
-        # expect(@order_shipping.errors.full_messages).to include('Postal code must be in the format 123-4567')
         expect(@order_shipping.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'prefecture_idが1では保存できない' do
         @order_shipping.prefecture_id = 1
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Prefecture must be selected')
+        expect(@order_shipping.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it 'cityが空では保存できない' do
@@ -70,7 +69,7 @@ RSpec.describe OrderShipping, type: :model do
       it 'phone_numberが9桁以下では保存できない' do
         @order_shipping.phone_number = '090123456'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Phone number must be 10 or 11 digits without hyphens')
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
 
       it 'phone_numberが12桁以上では保存できない' do
@@ -82,8 +81,9 @@ RSpec.describe OrderShipping, type: :model do
       it 'phone_numberにハイフンがあると保存できない' do
         @order_shipping.phone_number = '090-1234-5678'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Phone number must be 10 or 11 digits without hyphens')
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
+
       it 'tokenが空では保存できない' do
         @order_shipping.token = ''
         @order_shipping.valid?
@@ -97,9 +97,9 @@ RSpec.describe OrderShipping, type: :model do
       end
 
       it 'item_idが空では保存できない' do
-        @order_shipping.user_id = nil
+        @order_shipping.item_id = nil
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("User can't be blank")
+        expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
