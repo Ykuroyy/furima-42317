@@ -57,3 +57,10 @@ production:
   database: furima_42317_production
   username: furima_42317
   password: <%= ENV["FURIMA_42317_DATABASE_PASSWORD"] %>
+
+
+  host: postgresql://furima_42317_user:6ozERfzYlJzEDBMYTgCurRFqoUtgu0Fm@dpg-d0c9v8h5pdvs73ddmh10-a/furima_42317  # RenderのデータベースURLを入力
+  # username: furima_42317_user  # Renderで指定されたデータベースのユーザー名
+  # password: <%= ENV["FURIMA_42317_DATABASE_PASSWORD"] %>  # 環境変数でパスワードを設定
+  # database: furima_42317  # Renderで指定されたデータベース名
+  port: 3306  # 通常、MySQLのデフォルトポートは3306
