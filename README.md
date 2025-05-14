@@ -55,7 +55,8 @@
 - has_one :address
 
 
-## addresses テーブル
+<!-- ## addresses テーブル -->
+## shipping_addresses テーブル
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | ------------------------------ |

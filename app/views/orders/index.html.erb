@@ -1,0 +1,112 @@
+<%= include_gon %>
+
+
+<div class="transaction-contents">
+  <div class="transaction-main">
+    <h1 class="transaction-title-text">購入画面</h1>
+
+
+    <%= form_with model: @order_shipping, url: item_orders_path(@item), id: "charge-form", local: true, data: { turbo: false } do |f| %>
+
+     
+      <%= render 'shared/error_messages', model: f.object %>
+
+
+      <div class="buy-item-info">
+        <%= image_tag @item.image, class: "buy-item-img" %>
+        <div class="buy-item-right-content">
+          <p class="buy-item-text"><%= @item.name %></p>
+          <div class="buy-item-price">
+            <span class="item-price-text">¥<%= @item.price %></span>
+            <span class="item-price-sub-text"><%= @item.shipping_fee_status.name %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-payment">
+        <span class="item-payment-title">支払額</span>
+        <span class="item-payment-price">¥<%= @item.price %></span>
+      </div>
+
+      <div class="credit-card-form">
+        <p class="info-input-haedline">クレジットカード情報</p>
+           <div class="card-input">
+          <div class="input-block">
+           <div class="form-label-wrap">
+             <label for="number-form" class="form-label">カード番号</label>
+             <span class="required-label">必須</span>
+            </div>
+            <div id="number-form" class="card-field"></div>
+
+            <%= hidden_field_tag 'order_shipping[token]', '', id: 'token' %>
+
+          </div>
+          <div class="available-card">
+            <%= image_tag 'card-visa.gif', alt: 'Visa', class: 'card-logo' %>
+            <%= image_tag 'card-mastercard.gif', alt: 'MasterCard', class: 'card-logo' %>
+            <%= image_tag 'card-jcb.gif', alt: 'JCB', class: 'card-logo' %>
+            <%= image_tag 'card-amex.gif', alt: 'Amex', class: 'card-logo' %>
+          </div>
+          <div class="input-block">
+            <div class="form-label-wrap">
+              <label for="expiry-form" class="form-label">有効期限（月 / 年）</label>
+              <span class="required-label">必須</span>
+            </div>
+            <div id="expiry-form" class="card-field"></div>
+          </div>
+
+          <div class="input-block">
+            <div class="form-label-wrap">
+              <label for="cvc-form" class="form-label">CVC</label>
+              <span class="required-label">必須</span>
+            </div>
+            <div id="cvc-form" class="card-field"></div>
+          </div>
+
+      <div class="shipping-address-form">
+        <p class="info-input-haedline">配送先情報</p>
+          <div class="form-label-wrap">
+            <%= f.label :postal_code, "郵便番号", class: "form-label" %>
+            <span class="required-label">必須</span>
+          </div>
+          <%= f.text_field :postal_code, placeholder: '例）123-4567' %>
+        
+          <div class="form-label-wrap">
+            <%= f.label :prefecture_id, "都道府県", class: "form-label" %>
+            <span class="required-label">必須</span>
+          </div>  
+          <%= f.select :prefecture_id, Prefecture.all.map { |p| [p.name, p.id] }, { prompt: "---" } %>
+          
+
+          <div class="form-label-wrap">
+            <%= f.label :city, "市区町村", class: "form-label" %>
+            <span class="required-label">必須</span>
+          </div>
+          <%= f.text_field :city, placeholder: '例）横浜市緑区' %>
+        
+
+          <div class="form-label-wrap">
+            <%= f.label :street_address, "番地", class: "form-label" %>
+            <span class="required-label">必須</span>
+          </div>
+          <%= f.text_field :street_address, placeholder: '例）青山1-1-1' %>
+        
+
+          <div>
+            <%= f.label :building, "建物名（任意）" %>
+            <%= f.text_field :building, placeholder: '例）琴ビル103' %>
+          </div>
+
+          <div class="form-label-wrap">
+            <%= f.label :phone_number, "電話番号", class: "form-label" %>
+            <span class="required-label">必須</span>
+          </div>         
+          <%= f.text_field :phone_number, placeholder: '例）09012345678' %>
+      </div>
+
+      <div class="buy-btn">
+        <%= f.submit "購入", class: "buy-red-btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

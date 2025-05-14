@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "item_price"
+import "card"
 
 // document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("turbo:load", () => {

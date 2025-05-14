@@ -127,19 +127,18 @@
       新規投稿商品
     </div>
    
-    <ul class="item-lists">
+   <ul class="item-lists">
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class="list">
-            <%# <%= link_to "#" do %> 
             <%= link_to item_path(item) do %>
               <div class="item-img-content">
-              <%= image_tag item.image, class: "item-img" %>
-                <%# <% if item.order.present? %> 
-                  <%# <div class="sold-out"> %>
-                    <%# <span>Sold Out!!</span> %>
-                  <%# </div> %>
-                <%# <% end %> 
+                <%= image_tag item.image, class: "item-img" %>
+                <% if item.order.present? %>
+                  <div class="sold-out">
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
               </div>
 
               <div class="item-info">
@@ -164,9 +163,9 @@
               <div class="item-price">
                 <span>99999999円<br>(税込み)</span>
                 <div class="star-btn">
-                  <%= image_tag "star.png", class: "star-icon" %>%
-                   <span class="star-count">0</span> 
-                </div> 
+                  <%= image_tag "star.png", class: "star-icon" %>
+                  <span class="star-count">0</span>
+                </div>
               </div>
             </div>
           <% end %>
@@ -176,23 +175,6 @@
   </div>
   <%# /商品一覧 %>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <%= link_to(new_item_path, class: 'purchase-btn') do %>

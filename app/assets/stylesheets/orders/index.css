@@ -155,3 +155,96 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+.form-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* ラベルと必須の間隔 */
+  margin-bottom: 5px;
+}
+
+
+.required-label {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+
+
+/* 購入フォームの中央寄せと幅制限 */
+#charge-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 共通スタイル */
+#charge-form div {
+  margin-bottom: 20px;
+}
+
+/* ラベルと入力欄整列 */
+#charge-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* テキストフィールド幅調整 */
+#charge-form input[type="text"],
+#charge-form input[type="tel"],
+#charge-form input[type="number"],
+#charge-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* クレジットカードのマウント先 */
+#number-form,
+#expiry-form,
+#cvc-form {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  height: 48px;
+  background-color: #f9f9f9;
+}
+
+/* ボタンスタイル */
+#charge-form input[type="submit"] {
+  width: 100%;
+  background-color: #ea352d;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+.card-input {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.input-block label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
