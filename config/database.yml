@@ -55,3 +55,7 @@ test:
 production:
   <<: *default
   database: furima_42317_production
+  username: <%= ENV["FURIMA_DATABASE_USER"] %>
+  password: <%= ENV["FURIMA_DATABASE_PASSWORD"] %>
+  host: <%= ENV["FURIMA_DATABASE_HOST"] %>  # RenderのMySQLホストURLを設定
+  port: 3306  # MySQLポート
