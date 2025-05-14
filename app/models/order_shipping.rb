@@ -18,7 +18,7 @@ class OrderShipping
 
   def save
     item = Item.find(item_id)
-    order = Order.create(user_id: user_id, item_id: item_id, price: item.price)
+    order = Order.create(user_id: user_id, item_id: item_id )
     return false unless order.persisted?
 
     ShippingAddress.create(

@@ -10,20 +10,18 @@ class OrdersController < ApplicationController
 
   def create
     @order_shipping = OrderShipping.new(order_shipping_params)
-    if @order_shipping.valid?
+
+    gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil)  # JS再読み込み用
+
+    if @order_shipping.valid? && @order_shipping.save
       pay_item
-      if @order_shipping.save
-        redirect_to root_path
-      else
-        flash.now[:alert] = '保存に失敗しました'
-        gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil) # JS再読み込み用
-        render :index, status: :unprocessable_entity
-      end
+      redirect_to root_path
     else
-      gon.public_key = ENV.fetch('PAYJP_PUBLIC_KEY', nil) # JS再読み込み用
+      flash.now[:alert] = '保存に失敗しました' if @order_shipping.invalid?
       render :index, status: :unprocessable_entity
     end
   end
+
 
   private
 
@@ -34,8 +32,8 @@ class OrdersController < ApplicationController
   def order_shipping_params
     params.require(:order_shipping).permit(
       :postal_code, :prefecture_id, :city, :street_address,
-      :building, :phone_number, :token
-    ).merge(user_id: current_user.id, item_id: @item.id)
+      :building, :phone_number
+    ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
   def redirect_if_invalid_user

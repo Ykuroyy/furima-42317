@@ -3,20 +3,11 @@ $stdout.sync = true
 require 'rails_helper'
 
 RSpec.describe OrderShipping, type: :model do
+  let(:user) { FactoryBot.create(:user) }
+  let(:item) { FactoryBot.create(:item) }
+
   before do
-    user = FactoryBot.create(:user)
-    item = FactoryBot.create(:item)
-    @order_shipping = OrderShipping.new(
-      postal_code: '123-4567',
-      prefecture_id: 2,
-      city: '横浜市',
-      street_address: '青山1-1-1',
-      building: '柳ビル103',
-      phone_number: '09012345678',
-      user_id: user.id,
-      item_id: item.id,
-      token: 'tok_abcdefghijk00000000000000000'
-    )
+    @order_shipping = FactoryBot.build(:order_shipping, user_id: user.id, item_id: item.id)
   end
 
   describe '商品購入情報の保存' do
