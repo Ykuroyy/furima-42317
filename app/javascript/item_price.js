@@ -2,7 +2,7 @@
 
 const handleInput = (event) => {
   const value = parseInt(event.target.value, 10);
-  const feeDisplay = document.getElementById("fee");
+  const feeDisplay = document.getElementById("add-tax-price");
   const profitDisplay = document.getElementById("profit");
 
   if (!feeDisplay || !profitDisplay) return;
