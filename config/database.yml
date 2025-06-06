@@ -53,9 +53,10 @@ test:
 
 
 production:
-  <<: *default
-  adapter: mysql2
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: furima_42317_production
-  username: root
-  password:
-  socket: /var/lib/mysql/mysql.sock
+  username: ec2-user
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: localhost
